@@ -1,0 +1,8 @@
+# editors
+*.swp
+
+# composr
+composer.lock
+vendor/.composer/
+vendor/monolog/
+vendor/symfony/
