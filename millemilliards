@@ -79,7 +79,7 @@ $console
         $urlInfo = parse_url($urlBiographies);
         $urlArticle = sprintf('%s://%s%s', $urlInfo['scheme'], $urlInfo['host'], $urls[array_rand($urls)]);
         $logStderr->addInfo(sprintf('Extracting biography from URL %s', $urlArticle));
-        
+
         // Biography text
         $crawler = $client->request('GET', $urlArticle);
         $nodes = $crawler->filter('#mw-content-text p');
@@ -98,12 +98,8 @@ $console
         }
         $biography = str_replace($originalName, sprintf('%s %s', $surname, $name), $biography);
 
-        // Replace towns
-        $townsDirty = file(__DIR__.'/data/communes.csv');
-        $towns = array();
-        foreach ($townsDirty as $town) {
-            $towns[] = trim($town);
-        }
+        // Replace towns & areas
+        $towns = explode("\n", file_get_contents(__DIR__.'/data/communes.csv'));
         $words = explode(' ', $biography);
         for ($i = 0; $i < count($words); $i++) { 
             $word = trim($words[$i], '.,');
