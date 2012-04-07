@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/Console": "master",
+        "monolog/monolog": "master"
+    }
+}
